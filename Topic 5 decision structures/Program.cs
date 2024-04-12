@@ -1,4 +1,7 @@
-﻿namespace Topic_5_decision_structures
+﻿using System.Diagnostics.Metrics;
+using System.Security.Cryptography.X509Certificates;
+
+namespace Topic_5_decision_structures
 {
     internal class Program
     {
@@ -6,7 +9,7 @@
         {
             //damon 
             string answer;
-            Console.WriteLine("Would you like to use the bank or the parking garage?");
+            Console.WriteLine("Would you like to use the bank, hurricane or the parking garage?");
             answer = Console.ReadLine().ToLower();
             
             if (answer == "the bank" )
@@ -16,6 +19,10 @@
             else if (answer =="parking garage")
             {
                 ParkingGarage();
+            }
+            else if (answer == "hurricane")
+            {
+                Hurricane();
             }
         static void ParkingGarage()
         {
@@ -119,22 +126,11 @@
                     }
                     else if (withdrawl > money)
                     {
-                        bool done = false;
-                        if (withdrawl > money)
-                        {
-                            done = false;
-                        }
-                        else if (withdrawl < money)
-                        {
-                            done = true;
-                        }
-                        while (!done)
-                        {
-                            Console.WriteLine("You do not have that much money please enter a valid value.");
-                            withdrawl = Convert.ToDouble(Console.ReadLine());
-                            money = money - withdrawl;
-                            Console.WriteLine("You took out $" + withdrawl + "! You now have $" + money + " left!");
-                        }
+
+                        Console.WriteLine("You do not have that much money.");
+                            Console.WriteLine("You took out $0! You now have $" + money + " left!");
+                        Console.ReadLine();
+                        
                     }
                 }
            
@@ -166,6 +162,38 @@
                 {
                     money = money - 0.75;
                     Console.WriteLine("You currently have $" + money + " left in your account!");
+                }
+            }
+            static void Hurricane()
+            {
+                double category=0;
+                Console.WriteLine("Which category of Hurricanes would you like to learn about choose from numbers 1-5!");
+                category=Convert.ToDouble(Console.ReadLine());
+                switch (category)
+                {
+                    case  (1):
+                        Console.WriteLine("The wind speeds are 74-95 mph or 64-82 kt or 119-153 km/h");
+                        break;
+
+                    case (2):
+                        Console.WriteLine("The wind speeds are 96-110 mph or 83-95 kt or 154-177 km/h");
+                        break;
+
+                    case (3):
+                        Console.WriteLine("The wind speeds are 111-130 mph or 96-113 kt or 178-209 km/h");
+                        break;
+
+                    case (4):
+                        Console.WriteLine("The wind speeds are 131-155 mph or 114-135 kt or 210-249 km/h");
+                        break;
+
+                    case (5):
+                        Console.WriteLine("The wind speeds are greater than 155 mph or 135 kt or 249 km/h");
+                        break;
+
+                    case double.NaN:
+                        Console.WriteLine("Incorrect choice.");
+                        break;
                 }
             }
         }
